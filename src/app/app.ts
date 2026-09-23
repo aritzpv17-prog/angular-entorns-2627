@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Producte } from './interfaces/producte'; //PER PODER USAR LA iterface DE TIPUS Producte s'ha d'importar
+import { patata } from './models/patata';
 
 @Component({
   selector: 'app-root',
@@ -55,6 +56,26 @@ export class App {
       preu : 999,
       disponible : true
     };
+
+    patates: patata[] = [
+      { id: 1, nom: 'Patata blanca', autor: 'Agria', pagines: 120, disponible: true },
+      { id: 2, nom: 'Patata vermella', autor: 'Red Pontiac', pagines: 95, disponible: true },
+      { id: 3, nom: 'Patata dolça', autor: 'Sweet potato', pagines: 80, disponible: false },
+      { id: 4, nom: 'Patata nova', autor: 'Kennebec', pagines: 110, disponible: true },
+      { id: 5, nom: 'Patata petita', autor: 'Monalisa', pagines: 70, disponible: false, descripcio: 'Ideal per cuinar al forn' }
+    ];
+
+    getActius(): patata[] {
+      return this.patates.filter(patata => patata.disponible);
+    }
+
+    findById(id: number): patata | undefined {
+      return this.patates.find(patata => patata.id === id);
+    }
+
+    formatarElement(element: patata): string {
+      return `${element.nom} - ${element.autor} - ${element.pagines} pagines`;
+    }
 
     
 }
