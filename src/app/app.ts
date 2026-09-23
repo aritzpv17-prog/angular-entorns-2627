@@ -2,6 +2,8 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Producte } from './interfaces/producte'; //PER PODER USAR LA iterface DE TIPUS Producte s'ha d'importar
 import { patata } from './models/patata';
+import { saludar, esMajorEdat, sumarArray } from './funcions';
+import { Alumne } from './models/alumne';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,21 @@ import { patata } from './models/patata';
 })
 export class App {
   protected readonly title = signal('angular-entorns-2627');
+
+    constructor() {
+      console.log(saludar('Anna'));
+      console.log(esMajorEdat(20));
+      console.log(sumarArray([1, 2, 3, 4]));
+
+      const alumne1 = new Alumne('Pau', 20, 'DAW', [7, 8, 6]);
+      const alumne2 = new Alumne('Laia', 19, 'DAM', [4, 3, 5]);
+
+      console.log(alumne1.presentar());
+      console.log(alumne1.haAprobat);
+      console.log(alumne2.presentar());
+      console.log(alumne2.haAprobat);
+    }
+
     //OBJECTIU DE LA SESSIÓ 2: Veure la diferència entre JS i TS --> TS = JS + tipus.
     //ELS TIPUS no canvien com funciona el codi --> AJUDEN A DETECTAR ERRORS abans d'executar.
     // " undefined is not a function? " --> AIXÒ ÉS EL QUE VOLEM EVITAR!!!!!
